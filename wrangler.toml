@@ -1,27 +1,16 @@
-name = "mastra-weather-cf-workers"
+# Cloudflare Workers 配置文件
+name = "mastra-weather-app"
 main = "src/index.ts"
-compatibility_date = "2024-11-27"
+compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
 
-[env.production]
-name = "mastra-weather-production"
-vars = { ENVIRONMENT = "production" }
-
-[env.staging]
-name = "mastra-weather-staging"
-vars = { ENVIRONMENT = "staging" }
-
-# Cloudflare Workers的资源限制
-[limits]
-memory = 128 # MB
-cpu_ms = 50 # CPU时间限制
-
-# 环境变量（敏感信息通过wrangler secret设置）
+# 环境变量
 [vars]
 APP_NAME = "Mastra Weather App"
 APP_VERSION = "1.0.0"
-ENVIRONMENT = "development"
+ENVIRONMENT = "production"
 
-# 需要通过命令行设置的机密变量:
-# wrangler secret put OPENAI_API_KEY
-# wrangler secret put WEATHER_API_KEY
+# 开发环境配置
+[env.dev]
+name = "mastra-weather-app-dev"
+vars = { ENVIRONMENT = "development" }
